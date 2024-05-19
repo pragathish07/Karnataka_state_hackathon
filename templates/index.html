@@ -1,0 +1,768 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kSP</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <style>
+
+        
+     
+    
+    </style>
+</head>
+
+<body>
+
+
+    <header id="header">
+        <div id="navbar">
+            <h2 id="title">Accident Analysis</h2>
+                <ul>
+                        <li class="list"><a href="{{url_for('index')}}"></a> Home</li>
+                        <li class="list">Map</li>
+                        <li class="list">About Us</li>
+                        <li class="list">Logout</li>
+                </ul>
+            </div>
+    </header>
+
+    
+
+ <div class="wrapper">
+     <div id="scroll">
+         <div align="center">
+             
+       
+              <div id="catagories">
+                    <button id="dropbutton">Catagories</button>
+              </div>
+       
+              <h2>District Wise Analysis</h2>
+       
+       
+       
+                <div>
+                   <div>
+                    <a href="{{ url_for('bagalkot') }}"><button class="districts" >Bagalkot 
+                    </button>
+                   </a>
+                       
+                      <a href="{{ url_for('bangalore') }}">
+                        <button class="districts">Bengaluru City
+                        </button> 
+                      </a> 
+
+                      <a href="{{ url_for('Chikkamagaluru') }}">
+                    <button class="districts">Chikkamagaluru
+                    </button>
+                    </a>
+                       
+                      
+                  <a href="{{ url_for('kgf') }}">
+                    <button class="districts">K.G.F
+                    </button>
+                  </a> 
+                   
+                  <a href="{{ url_for('Mangaluru') }}">
+                    <button class="districts">Mangaluru City
+                    </button>
+                  </a>
+                   
+                  <a href="{{ url_for('Mysuru') }}">
+                    <button class="districts">Mysuru City
+                    </button>
+                  </a>
+                   
+                   <a href="{{ url_for('Udupi') }}">
+                    <button class="districts">Udupi
+                    </button>
+                   </a>
+                  
+                   <a href="{{ url_for('Vijayanagara') }}">
+                    <button class="districts">Vijayanagara
+                    </button>
+                   </a>
+                   
+                   <a href="{{ url_for('Yadgir') }}">
+                    <button class="districts">Yadgir
+                    </button>
+                   </a>
+                   
+                 </div>
+                 </div>
+       
+       
+       </div>
+         
+     </div>
+
+
+     <div id="rowdiv">
+         
+             <div id="sdiv1">
+                 <img src="{{ pie_chart_url }}" alt="Pie Chart: Accident Distribution by Location">
+             </div>
+             <div id="sdiv1">
+                 <img src="{{ line_chart_url }}" alt="Line Chart: Total Accidents per District">
+ 
+             </div>
+             <div id="sdiv1">
+                 <img src="{{ bar_chart_url }}" alt="Bar Chart: Accident Distribution by Road Type">
+ 
+             </div>
+             <div id="sdiv1">
+                <h1>Types of Roads where Accidents Occur</h1>
+                <canvas id="road_type_chart"></canvas>
+             </div>
+             <div id="sdiv1">
+                <h1>Top 15 places with more accidents in Bengaluru City</h1>
+                <canvas id="top_units_chart"></canvas>
+                
+                
+             </div>
+             <div id="sdiv1">
+ 
+             </div>
+             <!-- <div class="map-div"style="border:2px solid black;border-radius:10px;">
+                <span>Overall Accident Areas</span>
+                <iframe  src="./leafletmap.html"></iframe>
+        
+            </div>
+            <div class="map-div"style="border:2px solid black;border-radius:10px;">
+                <span>Overall Accident Areas</span>
+                <iframe   src="./leafletmap.html" ></iframe>
+        
+            </div> 
+            <div class="container-2">
+                <div class="parent">
+                    <div class="child">
+                        
+                        <div id="map1" class="map-container"></div>
+                        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                        <script>
+                            var map1 = L.map('map1').setView([15.3173, 75.7139], 8);
+    
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(map1);
+    
+                            var pointers1 = [
+                                [16.063833, 75.924106, 'Location 1'],
+                                [15.899076, 75.932457, 'Location 2'],
+                                [16.09851, 75.857045, 'Location 3'],
+                                [15.985381, 75.870481, 'Location 4'],
+                                [16.097321, 75.948619, 'Location 5'],
+                                [16.093687, 75.864756, 'Location 6'],
+                                [16.056013, 75.958237, 'Location 7'],
+                                [16.135706, 75.917571, 'Location 8'],
+                                [16.099348, 75.850158, 'Location 9'],
+                                [16.135827, 75.919221, 'Location 10'],
+                                [16.070608, 75.959307, 'Location 11'],
+                                [16.092199, 75.869606, 'Location 12'],
+                                [16.092257, 75.867214, 'Location 13'],
+                                [15.93417, 75.879748, 'Location 14'],
+                                [16.061612, 75.925439, 'Location 15'],
+                                [16.092431, 75.865433, 'Location 16'],
+                                [16.083886, 75.904352, 'Location 17'],
+                                [16.087244, 75.897017, 'Location 18'],
+                                [16.055873, 75.945902, 'Location 19'],
+                                [16.056978, 75.943648, 'Location 20']
+                            ];
+    
+                            pointers1.forEach(function(pointer) {
+                                var marker = L.marker([pointer[0], pointer[1]]).addTo(map1);
+                                var text = "Coordinates: " + pointer[0] + ", " + pointer[1];
+                                marker.bindTooltip(text, { permanent: true, direction: 'top' }).openTooltip();
+                            });
+                        </script>
+                    </div>
+                    <div class="child">
+                       
+                        <div id="map2" class="map-container"></div>
+                        <script>
+                            var map2 = L.map('map2').setView([15.3173, 75.7139], 8); 
+    
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(map2);
+    
+                            var trafficData = [
+                                [16.063833, 75.924106, getRandomDensity(), 'Location 1'],
+                                [15.899076, 75.932457, getRandomDensity(), 'Location 2'],
+                                [16.09851, 75.857045, getRandomDensity(), 'Location 3'],
+                                [15.985381, 75.870481, getRandomDensity(), 'Location 4'],
+                                [16.097321, 75.948619, getRandomDensity(), 'Location 5'],
+                                [16.093687, 75.864756, getRandomDensity(), 'Location 6'],
+                                [16.056013, 75.958237, getRandomDensity(), 'Location 7'],
+                                [16.135706, 75.917571, getRandomDensity(), 'Location 8'],
+                                [16.099348, 75.850158, getRandomDensity(), 'Location 9'],
+                                [16.135827, 75.919221, getRandomDensity(), 'Location 10'],
+                                [16.070608, 75.959307, getRandomDensity(), 'Location 11'],
+                                [16.092199, 75.869606, getRandomDensity(), 'Location 12'],
+                                [16.092257, 75.867214, getRandomDensity(), 'Location 13'],
+                                [15.93417, 75.879748, getRandomDensity(), 'Location 14'],
+                                [16.061612, 75.925439, getRandomDensity(), 'Location 15'],
+                                [16.092431, 75.865433, getRandomDensity(), 'Location 16'],
+                                [16.083886, 75.904352, getRandomDensity(), 'Location 17'],
+                                [16.087244, 75.897017, getRandomDensity(), 'Location 18'],
+                                [16.055873, 75.945902, getRandomDensity(), 'Location 19'],
+                                [16.056978, 75.943648, getRandomDensity(), 'Location 20'],
+                            ];
+    
+                            function getColor(density) {
+                                return density > 4 ? 'red' :
+                                       density > 2 ? 'orange' :
+                                       'green';
+                            }
+    
+                            trafficData.forEach(function(data) {
+                                var marker = L.circleMarker([data[0], data[1]], { 
+                                    radius: 10,
+                                    fillColor: getColor(data[2]), 
+                                    color: '#000',
+                                    weight: 1,
+                                    opacity: 1,
+                                    fillOpacity: 0.8
+                                }).addTo(map2);
+    
+                                marker.bindTooltip(data[3], { permanent: true, direction: 'top', className: 'traffic-tooltip' }).openTooltip();
+                            });
+    
+                            function getRandomDensity() {
+                                return Math.floor(Math.random() * 10) + 1;
+                            }
+                        </script>
+                    </div>
+                </div>
+    
+                
+            </div>
+ 
+     </div>
+ </div> 
+
+<footer id="footer">
+    <div class="footer-content">
+        <p>&copy; 2022 Your Company. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+</body>
+
+<script>
+    // Function to create bar chart
+    function createBarChart(canvasId, labels, data, label) {
+        var ctx = document.getElementById(canvasId).getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: data,
+                    backgroundColor: 'skyblue'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    // Data for charts
+    var topUnitsData = {{ top_units_data|safe }};
+    var roadTypeData = {{ road_type_data|safe }};
+    var topUnitsLabels = {{ top_units_labels|safe }};
+    var roadTypeLabels = {{ road_type_labels|safe }};
+
+    // Create bar charts
+    createBarChart('top_units_chart', topUnitsLabels, topUnitsData, 'Accident Count');
+    createBarChart('road_type_chart', roadTypeLabels, roadTypeData, 'Number of Accidents');
+</script>
+
+</html> -->
+
+ <!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSP</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        .map-container {
+            width: 400px;
+            height: 300px;
+        }
+        .side{
+            margin: 10px;
+
+        }
+.districts{
+background-color:white;
+width:230px;
+height:40px;
+text-align: left;
+padding-left: 15px;
+border-radius: 15px;
+font-size: 17px;
+margin-bottom: 25px;
+}
+
+.districts:hover{
+transform: scale(1.05);
+}
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; 
+}
+
+header {
+    background-color: #1f234d;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+    height: 70px;
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 29px;
+    font-weight: bold;
+    margin-left: 0px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.search-bar {
+    display: flex;
+}
+
+.search-bar input {
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 3px 0 0 3px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #000000;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #615f5f;
+}
+
+
+#main_1{
+    max-width: auto;
+    height: 700px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    
+   
+}
+
+#catagories{
+    height: 700px;
+    width: 300px;
+   
+    border-radius: 20px;
+    border-color: #000000;
+    border-style: solid;
+    float: left;
+}
+
+
+
+.container-1 {
+    display: flex;
+}
+.box-1 {
+    width: 350px;
+    height: 300px;
+    margin: 30px;
+    margin-top: 30px;
+    text-align: center;
+    line-height: 100px; 
+    font-family: Arial, sans-serif;
+    border-radius: 20px;
+   border: 2px solid #000;
+}
+
+.parent {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center;
+    padding: 20px;
+   
+}
+.child {
+    width: fit-content;
+    height: fit-content;
+    margin: 10px;
+    margin-left: 50px;
+    text-align: center;
+    line-height: 150px;
+    font-family: Arial, sans-serif;
+    border-radius: 20px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+
+.container-2 {
+    display: flex;
+    
+}
+
+.container-2 {
+    display: flex;
+    background-color: rgb(209, 198, 200);
+    border-radius: 20px;
+    border-color: #000000;
+    border-style: solid;
+    margin-left: 330px;
+    margin-right: 30px;
+    height: 700px;
+
+}
+
+.child-1 {
+    width: 650px;
+    height: 120px;
+    margin: 10px;
+    margin-top: 30px;
+    margin-left: 0px;
+    background-color: lightcoral;
+    text-align: center;
+    line-height: 150px;
+    font-family: Arial, sans-serif;
+    border-radius: 20px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+#logo1{
+    
+    width: 30%; float:right;
+   border-color: black;
+   
+
+}
+
+#logo1{
+    display: inline;
+}
+
+#footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 400px;
+    height: 300px;
+    background-color: cornflowerblue;
+    
+}
+
+.list{
+    display: inline;
+   padding: 10px;
+   padding-top: 100px;
+   cursor: pointer;
+
+}
+
+ul{
+    display: inline;
+  
+}
+#map{
+   
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">Karnataka State Police</a>
+            </div>
+            <nav>
+                <ul>
+                    <li>Hi {{user.name }}</li> 
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Maps</a></li>
+                    <li><a href="/logout" class="btn btn-dark">Logout</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button>Search</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="main_1">
+        <div id="catagories" style="margin: 20px;">
+            <h2 style="margin: 10px;padding: 10px;">District wise Analysis</h2>
+            <div class="side">
+                <div>
+                 <a href="{{ url_for('bagalkot') }}"><button class="districts" >Bagalkot 
+                 </button>
+                </a>
+                    
+                   <a href="{{ url_for('bangalore') }}">
+                     <button class="districts">Bengaluru City
+                     </button> 
+                   </a> 
+
+                   <a href="{{ url_for('Chikkamagaluru') }}">
+                 <button class="districts">Chikkamagaluru
+                 </button>
+                 </a>
+                    
+                   
+               <a href="{{ url_for('kgf') }}">
+                 <button class="districts">K.G.F
+                 </button>
+               </a> 
+                
+               <a href="{{ url_for('Mangaluru') }}">
+                 <button class="districts">Mangaluru City
+                 </button>
+               </a>
+                
+               <a href="{{ url_for('Mysuru') }}">
+                 <button class="districts">Mysuru City
+                 </button>
+               </a>
+                
+                <a href="{{ url_for('Udupi') }}">
+                 <button class="districts">Udupi
+                 </button>
+                </a>
+               
+                <a href="{{ url_for('Vijayanagara') }}">
+                 <button class="districts">Vijayanagara
+                 </button>
+                </a>
+                
+                <a href="{{ url_for('Yadgir') }}">
+                 <button class="districts">Yadgir
+                 </button>
+                </a>
+                
+              </div>
+              </div>
+        </div>
+
+        <div class="container-1">
+            <div class="box-1">
+                <img src="{{ pie_chart_url }}" alt="Pie Chart: Accident Distribution by Location" style="width:80%;height: 100%;">
+
+            </div>
+            <div class="box-1">
+                <img src="{{ bar_chart_url }}" alt="Bar Chart: Accident Distribution by Road Type" style="width:80%;height: 100%;">
+
+            </div>
+            <div class="box-1">
+                <img src="{{ line_chart_url }}" alt="Line Chart: Total Accidents per District" style="width:80%;height: 100%;">
+
+            </div>
+        </div>
+
+        <div class="container-2">
+            <h1>Maps</h1>
+            <div class="parent">
+                
+                <div class="child">
+                
+                    <div id="map1" class="map-container">
+                        <h2>Map 1</h2>
+                    </div>
+                    
+                    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                    <script>
+                        var map1 = L.map('map1').setView([15.3173, 75.7139], 8);
+
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map1);
+
+                        var pointers1 = [
+                            [16.063833, 75.924106, 'Location 1'],
+                            [15.899076, 75.932457, 'Location 2'],
+                            [16.09851, 75.857045, 'Location 3'],
+                            [15.985381, 75.870481, 'Location 4'],
+                            [16.097321, 75.948619, 'Location 5'],
+                            [16.093687, 75.864756, 'Location 6'],
+                            [16.056013, 75.958237, 'Location 7'],
+                            [16.135706, 75.917571, 'Location 8'],
+                            [16.099348, 75.850158, 'Location 9'],
+                            [16.135827, 75.919221, 'Location 10'],
+                            [16.070608, 75.959307, 'Location 11'],
+                            [16.092199, 75.869606, 'Location 12'],
+                            [16.092257, 75.867214, 'Location 13'],
+                            [15.93417, 75.879748, 'Location 14'],
+                            [16.061612, 75.925439, 'Location 15'],
+                            [16.092431, 75.865433, 'Location 16'],
+                            [16.083886, 75.904352, 'Location 17'],
+                            [16.087244, 75.897017, 'Location 18'],
+                            [16.055873, 75.945902, 'Location 19'],
+                            [16.056978, 75.943648, 'Location 20']
+                        ];
+
+                        pointers1.forEach(function(pointer) {
+                            var marker = L.marker([pointer[0], pointer[1]]).addTo(map1);
+                            var text = "Coordinates: " + pointer[0] + ", " + pointer[1];
+                            marker.bindTooltip(text, { permanent: true, direction: 'top' }).openTooltip();
+                        });
+                    </script>
+                </div>
+                <div class="child">
+                     
+                    <div id="map2" class="map-container"><h2>Map 2</h2></div>
+                    
+                    <script>
+                        var map2 = L.map('map2').setView([15.3173, 75.7139], 8); 
+
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map2);
+
+                        var trafficData = [
+                            [16.063833, 75.924106, getRandomDensity(), 'Location 1'],
+                            [15.899076, 75.932457, getRandomDensity(), 'Location 2'],
+                            [16.09851, 75.857045, getRandomDensity(), 'Location 3'],
+                            [15.985381, 75.870481, getRandomDensity(), 'Location 4'],
+                            [16.097321, 75.948619, getRandomDensity(), 'Location 5'],
+                            [16.093687, 75.864756, getRandomDensity(), 'Location 6'],
+                            [16.056013, 75.958237, getRandomDensity(), 'Location 7'],
+                            [16.135706, 75.917571, getRandomDensity(), 'Location 8'],
+                            [16.099348, 75.850158, getRandomDensity(), 'Location 9'],
+                            [16.135827, 75.919221, getRandomDensity(), 'Location 10'],
+                            [16.070608, 75.959307, getRandomDensity(), 'Location 11'],
+                            [16.092199, 75.869606, getRandomDensity(), 'Location 12'],
+                            [16.092257, 75.867214, getRandomDensity(), 'Location 13'],
+                            [15.93417, 75.879748, getRandomDensity(), 'Location 14'],
+                            [16.061612, 75.925439, getRandomDensity(), 'Location 15'],
+                            [16.092431, 75.865433, getRandomDensity(), 'Location 16'],
+                            [16.083886, 75.904352, getRandomDensity(), 'Location 17'],
+                            [16.087244, 75.897017, getRandomDensity(), 'Location 18'],
+                            [16.055873, 75.945902, getRandomDensity(), 'Location 19'],
+                            [16.056978, 75.943648, getRandomDensity(), 'Location 20'],
+                        ];
+
+                        function getColor(density) {
+                            return density > 4 ? 'red' :
+                                   density > 2 ? 'orange' :
+                                   'green';
+                        }
+
+                        trafficData.forEach(function(data) {
+                            var marker = L.circleMarker([data[0], data[1]], { 
+                                radius: 10,
+                                fillColor: getColor(data[2]), 
+                                color: '#000',
+                                weight: 1,
+                                opacity: 1,
+                                fillOpacity: 0.8
+                            }).addTo(map2);
+
+                            marker.bindTooltip(data[3], { permanent: true, direction: 'top', className: 'traffic-tooltip' }).openTooltip();
+                        });
+
+                        function getRandomDensity() {
+                            return Math.floor(Math.random() * 10) + 1;
+                        }
+                    </script>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+
+    <div id="footer">
+        <div style="width: 70%; float:left">
+            <h1 style="margin-left: 50px ; padding-top: 50px;">Karnataka State Police</h1>
+            <div style="padding-top: 30px; padding-left: 30px;">
+                <ul>
+                    <li class="list">HOME</li>
+                    <li class="list">ABOUT US</li>
+                    <li class="list">MAPS</li>
+                    <li class="list">POLICE STATION LOCATOR</li>
+                    <li class="list">QUICK LINKS</li>
+                </ul>
+            </div>
+            <hr style="margin: 30px;" color="black">
+            <h4 style="margin-left: 40px;">Please note that this page also provides links to the websites / web pages of Govt. Ministries/Departments/Organisations.The content of these websites are owned by the respective organisations and they may be contacted for any further information or suggestion</h4> 
+        </div>   
+
+        <div id="logo1">
+            <img src="../static/kar_main_logo.png" width="200px" height="200px" alt="logo" style="margin-left: 100px;">
+            <h1 style="margin-left: 100px;">KSP</h1>
+        </div>
+    </div>
+</body>
+</html> 
+

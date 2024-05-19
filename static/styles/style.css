@@ -1,0 +1,473 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+font-family: Arial, sans-serif;
+}
+
+#header {
+background-color:dimgray ;
+color: white;
+padding: 25px;
+margin: 0;
+}
+
+#iframe{
+height: 800px;
+margin-top: 20px;
+margin-left: 20px;
+border-radius: 20px;
+border-color: black;
+display: inline;
+float: left;
+
+
+}
+
+
+
+#profile{
+margin-top: 20px;
+}
+
+#dropbutton{
+background-color:white;
+width:180px;
+height:40px;
+text-align: left;
+padding-left: 15px;
+border-radius: 15px;
+font-size: 17px;
+margin-bottom: 25px;
+}
+
+.districts{
+background-color:white;
+width:230px;
+height:40px;
+text-align: left;
+padding-left: 15px;
+border-radius: 15px;
+font-size: 17px;
+margin-bottom: 25px;
+}
+
+.districts:hover{
+transform: scale(1.05);
+}
+
+
+#navbar{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+margin-top: 0;
+padding: 10px;
+
+
+}
+
+
+
+
+
+.list{
+display: inline;
+padding: 10px;
+padding-top: 100px;
+cursor: pointer;
+
+}
+#title{
+padding-right: 400px;
+display: inline;
+
+
+}
+
+
+.list:hover{
+transform:scale(0.5);
+
+}
+
+#pointermap{
+
+width: 280px;
+height: 230px;
+padding: 0%;
+
+}
+
+#trafficmap{
+width: 280px;
+height: 230px;
+padding: 0px;
+}
+
+#mapdiv{
+
+margin-left:px;
+
+}
+#maindiv{
+width: 1180px;
+height: 2000px;
+
+margin-right: 0px;
+
+}
+
+#srow1{
+height: 700px;
+width: 620px;
+
+
+}
+#srow2{
+display: flex;
+flex-direction: row;
+height: 700px;
+width: 550px;
+
+
+}
+#sdiv1{
+width: 580px;
+height:400px;
+padding: 10px;
+margin-left: 20px;
+margin-top: 20px;
+border: 2px solid black;
+border-radius: 20px;
+}
+
+#sdiv1 img{
+width: 100%;
+height: 100%;
+}
+#sdiv2{
+width: 580px;
+height:400px;
+margin-left: 20px;
+margin-top: 20px;
+border: 1px solid black;
+border-radius: 20px;
+
+}
+#s2div1{
+width: 310px;
+height: 700px;
+
+
+}
+
+#ssdiv1{
+height: 250px;
+width: 250px;
+margin-top: 20px;
+margin-left: 20px;
+border: 1px solid black;
+border-radius: 20px;
+}
+#ssdiv2{
+height: 250px;
+width: 250px;
+margin-top: 20px;
+margin-left: 20px;
+border: 1px solid black;
+border-radius: 20px;
+
+}
+
+span{
+margin-top: 10px;
+margin-left: 10px;
+}
+#scroll{
+width: 20%;
+float: left;
+border: 1px solid black;
+margin-top: 20px;
+overflow-x: hidden;
+overflow-y: auto;
+}
+#mainrow1{
+display: flex;
+flex-direction: row;
+}
+#s2column{
+display: flex;
+flex-direction: column;
+width: 400px;
+height: 700px;
+}
+
+.wrapper{
+    display: block;
+}
+#map{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+#rowdiv{
+width: 40%;
+display: grid;
+grid-template-columns:1fr 1fr;
+place-items: center;
+gap: 10px;
+}
+
+#footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    
+#footer {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.footer-links li {
+    margin-right: 10px;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: #333;
+}
+
+
+
+
+.main-div {
+    display: flex;
+    justify-content: space-around;
+    
+    padding: 10px;
+    width: 800px;
+}
+.districts{
+    
+    width:230px;
+    height:40px;
+    text-align: left;
+    padding-left: 15px;
+    border-radius: 15px;
+    font-size: 17px;
+    margin-bottom: 25px;
+    }
+
+    .districts:hover{
+    transform: scale(1.05);
+    }
+.column-div {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+.child-div {
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    height: 300px;
+    width: 300px;
+
+
+}
+#sdiv1{
+width: 580px;
+height:400px;
+padding: 10px;
+margin-left: 20px;
+margin-top: 20px;
+border: 2px solid black;
+border-radius: 20px;
+}
+
+#sdiv1 img{
+width: 100%;
+height: 100%;
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+background-color: #f0f0f0; 
+}
+
+header {
+background-color: #1f234d;
+color: #fff;
+padding: 10px 0;
+}
+
+.container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0px;
+height: 70px;
+}
+
+.logo a {
+color: #fff;
+text-decoration: none;
+font-size: 29px;
+font-weight: bold;
+margin-left: 0px;
+}
+
+nav ul {
+list-style: none;
+display: flex;
+}
+.side{
+    margin: 10px;
+
+}
+
+nav ul li {
+margin-left: 20px;
+}
+
+nav ul li a {
+color: #fff;
+text-decoration: none;
+font-size: 18px;
+}
+
+nav ul li a:hover {
+text-decoration: underline;
+}
+
+.search-bar {
+display: flex;
+}
+
+.search-bar input {
+padding: 5px;
+font-size: 16px;
+border: none;
+border-radius: 3px 0 0 3px;
+}
+
+.search-bar button {
+padding: 5px 10px;
+font-size: 16px;
+border: none;
+background-color: #000000;
+color: #fff;
+border-radius: 0 3px 3px 0;
+cursor: pointer;
+}
+
+.search-bar button:hover {
+background-color: #615f5f;
+}
+
+
+#main_1{
+max-width: auto;
+height: 700px;
+margin-top: 50px;
+margin-bottom: 60px;
+
+
+}
+
+#catagories{
+height: 700px;
+width: 300px;
+border-radius: 20px;
+border-color: #000000;
+border-style: solid;
+float: left;
+}
+
+
+
+.container-1 {
+display: flex;
+
+}
+.container-2 {
+
+width: 400px;
+height: 800px;
+border-radius: 20px;
+border-style: solid;
+border-color: black;
+overflow-y: auto;
+margin-right: 20px;
+padding: 20px;
+
+}
+h1 {
+    text-align: center;
+    margin: 20px;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin: 20px;
+    
+}
+.suggestion{
+    margin: 0px;
+    padding: 0;
+}
+.suggestions-container {
+    max-height: 250px; /* Set max-height */
+    overflow-y: auto; /* Add scrollbar */
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.suggestions-container ul {
+    padding-left: 20px;
+}
+
+.suggestions-container li {
+    margin-bottom: 10px;
+}

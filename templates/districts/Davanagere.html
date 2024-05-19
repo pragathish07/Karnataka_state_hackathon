@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../static/styles/style.css">
+    <title>District</title>
+    
+</head>
+
+
+
+
+<body>
+
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">Karnataka State Police</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Maps</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button>Search</button>
+            </div>
+        </div>
+    </header>
+    
+
+
+
+
+
+
+    <div id="main_1">
+        <div id="catagories" style="margin: 20px;">
+            <h2 style="margin: 10px;padding: 10px;">District wise Analysis</h2>
+            <div class="side">
+                <div>
+                 <a href="{{ url_for('bagalkot') }}"><button class="districts" >Bagalkot 
+                 </button>
+                </a>
+                    
+                   <a href="{{ url_for('bangalore') }}">
+                     <button class="districts">Bengaluru City
+                     </button> 
+                   </a> 
+
+                   <a href="{{ url_for('Chikkamagaluru') }}">
+                 <button class="districts">Chikkamagaluru
+                 </button>
+                 </a>
+                    
+                   
+               <a href="{{ url_for('kgf') }}">
+                 <button class="districts">K.G.F
+                 </button>
+               </a> 
+                
+               <a href="{{ url_for('Mangaluru') }}">
+                 <button class="districts">Mangaluru City
+                 </button>
+               </a>
+                
+               <a href="{{ url_for('Mysuru') }}">
+                 <button class="districts">Mysuru City
+                 </button>
+               </a>
+                
+                <a href="{{ url_for('Udupi') }}">
+                 <button class="districts">Udupi
+                 </button>
+                </a>
+               
+                <a href="{{ url_for('Vijayanagara') }}">
+                 <button class="districts">Vijayanagara
+                 </button>
+                </a>
+                
+                <a href="{{ url_for('Yadgir') }}">
+                 <button class="districts">Yadgir
+                 </button>
+                </a>
+                
+              </div>
+              </div>
+        </div>
+        <div class="container-1">
+            <div class="main-div">
+                <div class="column-div">
+                    <div id="sdiv1">
+                        <h1>Types of Roads where Accidents Occur</h1>
+                        <canvas id="road_type_chart"></canvas>
+                     </div>
+                     <div id="sdiv1">
+                        <h1>Top 15 places with more accidents in Davanagere City</h1>
+                        <canvas id="top_units_chart"></canvas>
+                     </div>
+                </div>
+            </div>
+
+            <div class="container-2">
+                <h1>Accident Suggestions</h1>
+                <ul>
+                    {% for district, count in accident_counts.items() %}
+                        <li>
+                            <strong>District: {{ district }}</strong><br>
+                            Number of accidents: {{ count }}<br>
+                            <strong>Suggestions:</strong>
+                            <div class="suggestions-container">
+                                <ul>
+                                    {% for suggestion in suggestions[district] %}
+                                        <li class="suggestion">{{ suggestion }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        
+
+            </div>
+
+
+</body>
+
+
+
+<script>
+    // Function to create bar chart
+    function createBarChart(canvasId, labels, data, label) {
+        var ctx = document.getElementById(canvasId).getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: data,
+                    backgroundColor: 'skyblue'
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    // Data for charts
+    var topUnitsData = {{ top_units_data|safe }};
+    var roadTypeData = {{ road_type_data|safe }};
+    var topUnitsLabels = {{ top_units_labels|safe }};
+    var roadTypeLabels = {{ road_type_labels|safe }};
+
+    // Create bar charts
+    createBarChart('top_units_chart', topUnitsLabels, topUnitsData, 'Accident Count');
+    createBarChart('road_type_chart', roadTypeLabels, roadTypeData, 'Number of Accidents');
+</script>
+
+</html>
