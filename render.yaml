@@ -3,5 +3,9 @@ services:
     name: my-flask-app
     env: python
     plan: free
-    buildCommand: ""
+    buildCommand: |
+      rm -rf /opt/render/project/src/*
+      git clone https://github.com/pragathish07/Karnataka_state_hackathon /opt/render/project/src
+      cd /opt/render/project/src
+      git lfs pull
     startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2
